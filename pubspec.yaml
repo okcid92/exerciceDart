@@ -1,0 +1,15 @@
+name: task_manager
+description: >-
+  A pure Dart CLI task manager demonstrating OOP inheritance, generics,
+  interfaces, custom exceptions and JSON persistence.
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  path: ^1.9.0
+
+dev_dependencies:
+  test: ^1.25.0
