@@ -10,6 +10,7 @@
         "path"
       ],
       "devDependencies": [
+        "lints",
         "test"
       ]
     },
@@ -43,6 +44,11 @@
         "webkit_inspection_protocol",
         "yaml"
       ]
+    },
+    {
+      "name": "lints",
+      "version": "5.1.1",
+      "dependencies": []
     },
     {
       "name": "path",

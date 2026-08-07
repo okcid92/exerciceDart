@@ -1,7 +1,8 @@
 name: task_manager
 description: >-
-  A pure Dart CLI task manager demonstrating OOP inheritance, generics,
-  interfaces, custom exceptions and JSON persistence.
+  Gestionnaire de tâches en ligne de commande (Dart pur) illustrant
+  l'héritage, les génériques, les interfaces, les exceptions personnalisées
+  et la persistance JSON locale.
 version: 1.0.0
 publish_to: none
 
@@ -12,4 +13,5 @@ dependencies:
   path: ^1.9.0
 
 dev_dependencies:
+  lints: ^5.1.0
   test: ^1.25.0

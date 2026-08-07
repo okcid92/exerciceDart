@@ -1,0 +1,7 @@
+# Outils
+.dart_tool/
+.build/
+
+# Fichier de persistance généré par l'application
+tasks.json
+data/

@@ -98,6 +98,12 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "lints",
+      "rootUri": "file:///home/okcid/.pub-cache/hosted/pub.dev/lints-5.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
       "name": "logging",
       "rootUri": "file:///home/okcid/.pub-cache/hosted/pub.dev/logging-1.3.0",
       "packageUri": "lib/",

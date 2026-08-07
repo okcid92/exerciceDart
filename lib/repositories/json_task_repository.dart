@@ -8,10 +8,10 @@ import '../interfaces/repository.dart';
 import '../models/task.dart';
 
 /// Implémentation de [Repository<Task>] basée sur un fichier JSON local
-/// (par défaut `data/tasks.json`).
+/// (par défaut `tasks.json`, créé dans le répertoire courant).
 class JsonTaskRepository implements Repository<Task> {
   JsonTaskRepository({String? directory, String? fileName}) {
-    final dir = directory ?? 'data';
+    final dir = directory ?? '.';
     final name = fileName ?? 'tasks.json';
     final resolved = File(p.normalize(p.join(dir, name)));
     resolved.parent.createSync(recursive: true);

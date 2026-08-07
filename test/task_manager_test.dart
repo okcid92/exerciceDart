@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:task_manager/exceptions/app_exceptions.dart';
+import 'package:task_manager/interfaces/storable.dart';
 import 'package:task_manager/models/priority.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/repositories/json_task_repository.dart';
@@ -8,6 +9,24 @@ import 'package:task_manager/services/task_service.dart';
 import 'package:test/test.dart';
 
 void main() {
+  group('Task implements Storable', () {
+    test('every task honors the Storable JSON contract', () {
+      final tasks = <Task>[
+        StandardTask(id: 1, title: 'Standard', priority: Priority.low),
+        UrgentTask(id: 2, title: 'Urgent'),
+      ];
+
+      for (final task in tasks) {
+        expect(task, isA<Storable>());
+        final json = task.toJson();
+        expect(json, containsPair('id', task.id));
+        expect(json, containsPair('title', task.title));
+        expect(json, containsPair('priority', task.priority.name));
+        expect(json, containsPair('isCompleted', task.isCompleted));
+      }
+    });
+  });
+
   group('StandardTask', () {
     test('serializes and deserializes without data loss', () {
       final dueDate = DateTime(2026, 8, 7, 12, 30);
@@ -226,6 +245,18 @@ void main() {
       final tasks = await repository.load();
 
       expect(tasks, isEmpty);
+    });
+
+    test('persists data in a file named tasks.json', () async {
+      final dir = await Directory.systemTemp.createTemp('tm_name_');
+      addTearDown(() => dir.deleteSync(recursive: true));
+
+      final repository = JsonTaskRepository(directory: dir.path);
+      await repository.save(<Task>[StandardTask(id: 1, title: 'X')]);
+
+      final file = File('${dir.path}/tasks.json');
+      expect(file.existsSync(), isTrue);
+      expect(file.readAsStringSync(), contains('"title":"X"'));
     });
 
     test('throws StorageException when the file is not valid JSON', () async {

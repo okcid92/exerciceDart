@@ -1,8 +1,9 @@
 import '../exceptions/app_exceptions.dart';
+import '../interfaces/storable.dart';
 import 'priority.dart';
 
 /// Classe abstraite de base pour toutes les tâches.
-abstract class Task {
+abstract class Task implements Storable {
   Task({
     required this.id,
     required this.title,
@@ -21,7 +22,9 @@ abstract class Task {
   /// quelle sous-classe doit être reconstruite.
   String get type;
 
-  /// Sérialise la tâche vers une simple map JSON.
+  /// Implémente le contrat [Storable] : sérialise la tâche vers une simple
+  /// map JSON.
+  @override
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'id': id,
